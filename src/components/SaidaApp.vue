@@ -1,0 +1,291 @@
+<template>
+  <div class="app-container">
+    <div class="app-content">
+      <header class="header">
+        <h1>Усатая Няня — забота о вашем котике от Саиды</h1>
+        <p>Пока вы в отпуске — ваш кот под надёжной защитой лап Саиды 🐾</p>
+      </header>
+
+      <div class="benefits-block">
+        <section class="section">
+          <h2>Почему Саида?</h2>
+          <div class="benefits-list">
+            <div class="benefit-card">🐱 Опыт более 5 лет ухода за кошками всех возрастов и характеров</div>
+            <div class="benefit-card">🏠 Уход на дому — минимальный стресс для вашего питомца</div>
+            <div class="benefit-card">📷 Фотоотчёты и видео с котиком каждый день</div>
+            <div class="benefit-card">💊 Поддержка при приёме лекарств и специальных диет</div>
+            <div class="benefit-card">😻 Настоящая любовь к котикам и индивидуальный подход</div>
+          </div>
+        </section>
+      </div>
+
+      <section class="reviews">
+        <h2>Отзывы довольных котиков</h2>
+        <div class="slider">
+          <div class="slider-track" :style="`transform: translateX(-${currentSlide * 100}%);`">
+            <div
+              v-for="(review, index) in reviews"
+              :key="index"
+              class="review-card"
+            >
+              <img :src="review.photo" alt="Фото котика" class="cat-photo" />
+              <p class="review-text">"{{ review.text }}"</p>
+              <p class="review-author">— {{ review.name }}, {{ review.age }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="slider-dots">
+          <button
+            v-for="(_, index) in Math.ceil(reviews.length / 3)"
+            :key="index"
+            :class="['dot', { active: index === currentSlide }]"
+            @click="currentSlide = index"
+          ></button>
+        </div>
+      </section>
+
+      <section class="section contact">
+        <h2>Связаться с Саидой</h2>
+        <form class="contact-form">
+          <input type="text" placeholder="Ваше имя" />
+          <input type="email" placeholder="Email или Telegram" />
+          <textarea placeholder="Коротко о вашем котике и датах отпуска"></textarea>
+          <button type="submit">Отправить мяу</button>
+        </form>
+      </section>
+
+      <footer class="footer">
+        &copy; 2025 Саида и довольные котики 🐾
+      </footer>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const currentSlide = ref(0)
+
+const reviews = [
+  {
+    name: 'Барсик',
+    age: '7 лет',
+    text: 'Мяу! Саида гладила меня ровно 37 минут в день — я засекал. Верните её!',
+    photo: 'https://i.pinimg.com/736x/c8/a7/fd/c8a7fd5c874ee31f18354345e9caf553.jpg'
+  },
+  {
+    name: 'Мурзя',
+    age: '4 года',
+    text: 'Миска всегда была полной. Лоток — чистым. Я думал, что снова родился.',
+    photo: 'https://img.freepik.com/free-photo/adorable-white-cat-sunglasses-shirt-lies-fabric-hammock-ai-generated_268835-10929.jpg?semt=ais_hybrid&w=740'
+  },
+  {
+    name: 'Клёпа',
+    age: '9 лет',
+    text: 'Саида понимала меня с полумяука. Теперь я сравниваю всех с ней...',
+    photo: 'https://ornella.club/uploads/posts/2023-05/36589/1685200924_ornella-club-p-dovolnii-kotik-pinterest-1.jpg'
+  },
+  {
+    name: 'Снежок',
+    age: '1 год',
+    text: 'Она приносила мне игрушки и чесала за ушком! 10/10!',
+    photo: 'https://ornella.club/uploads/posts/2023-05/36589/1685200906_ornella-club-p-dovolnii-kotik-pinterest-7.jpg'
+  },
+  {
+    name: 'Пуша',
+    age: '5 лет',
+    text: 'Мне пели колыбельные. Теперь я требую это от всех!',
+    photo: 'https://storage.bankoboev.ru/big/7/big327930.jpg'
+  },
+  {
+    name: 'Леопольд',
+    age: '6 лет',
+    text: 'Я боялся чужих, но Саида была как мама. Мяу-респект!',
+    photo: 'https://img.freepik.com/premium-photo/pleased-with-gray-kitten-white-background-closed-his-eyes-portrait-scottish-cat_445280-6.jpg'
+  }
+]
+</script>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Comic Sans MS', 'Segoe UI', sans-serif;
+  background-color: #fffaf3;
+  color: #4b2e2e;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app-header,
+.benefits-block,
+.reviews-block,
+.contact-block {
+  width: 100%;
+}
+
+.header,
+.section,
+.reviews,
+.contact {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.header {
+  background-color: #fbd38d;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+.header p {
+  font-style: italic;
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+.section {
+  padding: 40px 20px;
+}
+
+.section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.benefits-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.benefit-card {
+  flex: 1 1 calc(20% - 16px);
+  background: #fff;
+  padding: 16px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  font-size: 0.95rem;
+}
+
+.reviews {
+  background-color: #fff3d8;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.slider {
+  overflow: hidden;
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.review-card {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .review-card {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+  }
+}
+
+.review-card .cat-photo {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.review-text {
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+.review-author {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #fbd38d;
+  border: none;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: #f6ad55;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 10px;
+  border: 1px solid #f6ad55;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.contact-form button {
+  background-color: #f6ad55;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+  background-color: #ed8936;
+}
+
+.footer {
+  background-color: #fbd38d;
+  padding: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 40px;
+  width: 100%;
+}
+</style>
