@@ -141,6 +141,7 @@ body {
   padding: 30px;
   text-align: center;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .header h1 {
@@ -167,7 +168,7 @@ body {
 .benefits-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   gap: 16px;
 }
 
@@ -179,6 +180,12 @@ body {
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   font-size: 0.95rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .reviews {
@@ -201,12 +208,40 @@ body {
   max-width: 100%;
   padding: 20px;
   box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 @media (min-width: 768px) {
   .review-card {
     flex: 0 0 33.33%;
     max-width: 33.33%;
+  }
+  .benefit-card {
+    flex: 1 1 calc(30% - 16px);
+  }
+}
+
+@media (max-width: 767px) {
+  .header h1 {
+    font-size: 1.8rem;
+  }
+  .header p {
+    font-size: 1rem;
+  }
+  .benefit-card {
+    flex: 1 1 100%;
+  }
+  .review-card {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .contact-form {
+    padding: 0 10px;
   }
 }
 
@@ -243,6 +278,7 @@ body {
   background-color: #fbd38d;
   border: none;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .dot.active {
@@ -289,3 +325,4 @@ body {
   width: 100%;
 }
 </style>
+
